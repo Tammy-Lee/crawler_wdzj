@@ -27,7 +27,9 @@ def make_response(api, with_login=False, with_proxy=False, timeout=0.5, **kwargs
     url = api['url']
     method = api['method']
     formdata = api.get('formdata', {})
-    headers = {}
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36"
+    }
     proxy = {}
     if method == 'GET':
         url = url.format(**kwargs)
