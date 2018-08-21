@@ -11,7 +11,7 @@ def get_plat_id(company_info):
     if company_info['wdzjPlatId'] != 0:
         return str(company_info['wdzjPlatId'])
     try:
-        plat_id = int(company_info['platId'])
+        int(company_info['platId'])
         return company_info['platId']
     except ValueError:
         return "0"
@@ -74,7 +74,20 @@ def problem():
     kwargs = {'year': ''}
     _get_problem_company_list(api, **kwargs)
 
+def all_companies():
+    api = apis.API_ALL_COMPANIES
+    response = make_response(api, timeout=5)
+    print(len(response.json()))
+    for item in response.json():
+        data = {}
+        data["name"] = item["platName"]
+        data["plat_id"] = str(item["platId"])
+        data["wdzj_plat_id"] = str(item["platId"])
+        update_one(data, ["plat_id"], api["collection"], "$setOnInsert", "wdzj_plat_id")
+
+
 if __name__ == '__main__':
-    normal(verbose=True)
-    shutdown()
-    problem()
+    # normal(verbose=True)
+    # shutdown()
+    # problem()
+    all_companies()

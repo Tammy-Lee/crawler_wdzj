@@ -3,6 +3,16 @@
 create on 2018-08-19 17:02
 author @66492
 """
+API_COMPANY_STATUS = {
+    "url": "https://www.wdzj.com/dangan/search?filter={type}&currentPage={page}",
+    "method": "GET",
+    "collection": "company_status"
+}
+API_ALL_COMPANIES = {
+    "url": "https://www.wdzj.com/wdzj/html/json/dangan_search.json",
+    "method": "GET",
+    "collection": "company_list"
+}
 API_PROBLEM = {
     "url": "https://shuju.wdzj.com/problem-list-all.html?year={year}",
     "method": "GET",
